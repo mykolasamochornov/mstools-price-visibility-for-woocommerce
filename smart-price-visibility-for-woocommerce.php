@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Smart Price Visibility for WooCommerce
- * Plugin URI: https://example.com
+ * Plugin URI: https://github.com/mykolasamochornov/smart-price-visibility-for-woocommerce
  * Description: Control WooCommerce price visibility. Hide prices for guests or replace them with custom text or a request form.
  * Version: 1.0.0
  * Author: Samochornov Mykola
