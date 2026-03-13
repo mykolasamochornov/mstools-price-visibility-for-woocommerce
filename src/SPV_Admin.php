@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace SmartPriceVisibility;
 
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 /**
  * Handles all admin-related functionality for the Smart Price Visibility plugin.
  *

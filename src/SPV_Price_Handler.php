@@ -8,6 +8,10 @@ use SmartPriceVisibility\SPV_Settings;
 use SmartPriceVisibility\Enums\SPV_Price_View_Types;
 use SmartPriceVisibility\Enums\SPV_Apply_For;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Handles product price visibility logic for the Smart Price Visibility plugin.
  *
@@ -158,7 +162,7 @@ class SPV_Price_Handler
         if (!$apply) return;
 
         global $product;
-        echo $this->renderRequestForm($product);
+        echo wp_kses_post($this->renderRequestForm($product));
     }
 
     /**
@@ -180,10 +184,10 @@ class SPV_Price_Handler
             <?php endif; ?>
             <form class="spv-request-form" data-product-id="<?php echo esc_attr($product_id); ?>">
                 <p class="form-row form-row-wide">
-                    <input type="email" name="spv_email" class="input-text" placeholder="<?php echo esc_attr__('Your email', 'smart-price-visibility'); ?>" required>
+                    <input type="email" name="spv_email" class="input-text" placeholder="<?php echo esc_attr__('Your email', 'smart-price-visibility-for-woocommerce'); ?>" required>
                 </p>
                 <p class="form-row">
-                    <button type="submit" class="button wp-block-button__link wp-element-button wc-block-components-product-button__button"><?php echo esc_html__('Request Price', 'smart-price-visibility'); ?></button>
+                    <button type="submit" class="button wp-block-button__link wp-element-button wc-block-components-product-button__button"><?php echo esc_html__('Request Price', 'smart-price-visibility-for-woocommerce'); ?></button>
                 </p>
             </form>
         </div>

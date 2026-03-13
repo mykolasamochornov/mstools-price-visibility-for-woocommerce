@@ -59,15 +59,16 @@ class SPV_Request_Handler
 	public function registerStatus(): void
 	{
 		register_post_status('wc-request', [
-			'label'                     => __('Price Request', 'smart-price-visibility'),
+			'label'                     => __('Price Request', 'smart-price-visibility-for-woocommerce'),
 			'public'                    => true,
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
+			// translators: %s is the number of price request orders
 			'label_count'               => _n_noop(
 				'Price Request <span class="count">(%s)</span>',
 				'Price Requests <span class="count">(%s)</span>',
-				'smart-price-visibility'
+				'smart-price-visibility-for-woocommerce'
 			),
 		]);
 	}
@@ -80,7 +81,7 @@ class SPV_Request_Handler
 	 */
 	public function addToWooCommerceStatuses(array $statuses): array
 	{
-		$statuses['wc-request'] = __('Price Request', 'smart-price-visibility');
+		$statuses['wc-request'] = __('Price Request', 'smart-price-visibility-for-woocommerce');
 		return $statuses;
 	}
 
@@ -96,21 +97,21 @@ class SPV_Request_Handler
 	{
 		check_ajax_referer('spv_nonce', 'nonce');
 
-		$email = sanitize_email($_POST['email'] ?? '');
+		$email = sanitize_email( wp_unslash( $_POST['email'] ?? '' ) );
 		$product_id = intval($_POST['product_id'] ?? 0);
 
 		if (!$email || !$product_id) {
-			wp_send_json_error(['message' => __('Invalid data', 'smart-price-visibility')]);
+			wp_send_json_error(['message' => __('Invalid data', 'smart-price-visibility-for-woocommerce')]);
 		}
 
 		$product = wc_get_product($product_id);
 		if (!$product) {
-			wp_send_json_error(['message' => __('Product not found', 'smart-price-visibility')]);
+			wp_send_json_error(['message' => __('Product not found', 'smart-price-visibility-for-woocommerce')]);
 		}
 
 		$order = wc_create_order();
 		if (is_wp_error($order)) {
-			wp_send_json_error(['message' => __('Failed to create order', 'smart-price-visibility')]);
+			wp_send_json_error(['message' => __('Failed to create order', 'smart-price-visibility-for-woocommerce')]);
 		}
 
 		$order->add_product($product, 1);
@@ -120,7 +121,7 @@ class SPV_Request_Handler
 		$order->save();
 
 		wp_send_json_success([
-			'message'  => __('Request submitted successfully', 'smart-price-visibility'),
+			'message'  => __('Request submitted successfully', 'smart-price-visibility-for-woocommerce'),
 			'order_id' => $order->get_id(),
 			'status'   => $order->get_status(),
 		]);

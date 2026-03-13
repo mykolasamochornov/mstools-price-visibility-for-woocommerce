@@ -66,10 +66,10 @@ final class SPV_Price_View_Types
 	public static function labels(): array
 	{
 		return [
-			self::WITHOUT_CHANGES => __('Without changes', 'smart-price-visibility'),
-			self::HIDE_PRICE => __('Hide price', 'smart-price-visibility'),
-			self::HIDE_PRICE_AND_SHOW_TEXT => __('Hide price and show text', 'smart-price-visibility'),
-			self::HIDE_PRICE_AND_SHOW_FORM_REQUEST => __('Hide price and show request form', 'smart-price-visibility'),
+			self::WITHOUT_CHANGES => __('Without changes', 'smart-price-visibility-for-woocommerce'),
+			self::HIDE_PRICE => __('Hide price', 'smart-price-visibility-for-woocommerce'),
+			self::HIDE_PRICE_AND_SHOW_TEXT => __('Hide price and show text', 'smart-price-visibility-for-woocommerce'),
+			self::HIDE_PRICE_AND_SHOW_FORM_REQUEST => __('Hide price and show request form', 'smart-price-visibility-for-woocommerce'),
 		];
 	}
 }

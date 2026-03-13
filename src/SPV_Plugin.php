@@ -9,6 +9,10 @@ use SmartPriceVisibility\SPV_Price_Handler;
 use SmartPriceVisibility\SPV_Request_Handler;
 use SmartPriceVisibility\SPV_Settings;
 
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 /**
  * Main plugin class for Smart Price Visibility.
  * 
@@ -93,7 +97,7 @@ class SPV_Plugin
 		if (!current_user_can('activate_plugins')) return;
 
 		echo '<div class="notice notice-error"><p>';
-		echo esc_html__('Smart Price Visibility for WooCommerce requires WooCommerce to be installed and active.', 'smart-price-visibility');
+		echo esc_html__('Smart Price Visibility for WooCommerce requires WooCommerce to be installed and active.', 'smart-price-visibility-for-woocommerce');
 		echo '</p></div>';
 	}
 }

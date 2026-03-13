@@ -52,8 +52,8 @@ final class SPV_Apply_For
 	public static function labels(): array
 	{
 		return [
-			self::EVERYONE => __('Apply for everyone', 'smart-price-visibility'),
-			self::GUESTS_ONLY => __('Apply only for guests', 'smart-price-visibility'),
+			self::EVERYONE => __('Apply for everyone', 'smart-price-visibility-for-woocommerce'),
+			self::GUESTS_ONLY => __('Apply only for guests', 'smart-price-visibility-for-woocommerce'),
 		];
 	}
 }

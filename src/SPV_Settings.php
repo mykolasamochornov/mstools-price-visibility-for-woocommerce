@@ -130,11 +130,27 @@ final class SPV_Settings
 	{
 		check_ajax_referer('spv_nonce', 'nonce');
 
-		$input = $_POST['settings'] ?? [];
+		// Get raw input, unslash, and ensure it's an array
+		$raw_input = sanitize_text_field( wp_unslash($_POST['settings'] ?? []) );
+		if (!is_array($raw_input)) {
+			$raw_input = [];
+		}
 
+		// Sanitize each setting value
+		$input = [];
+		foreach ($raw_input as $key => $value) {
+			if (is_array($value)) {
+				$input[$key] = array_map('sanitize_text_field', $value);
+			} else {
+				$input[$key] = sanitize_text_field($value);
+			}
+		}
+
+		// Merge with existing options
 		$options = get_option(self::OPTION_KEY, []);
 		$options = array_merge($options, $input);
 
+		// Sanitize according to plugin rules
 		$sanitized = self::sanitize($options);
 
 		update_option(self::OPTION_KEY, $sanitized);

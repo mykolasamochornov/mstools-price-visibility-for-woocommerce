@@ -7,7 +7,7 @@
  * Author: Samochornov Mykola
  * Author URI: https://github.com/mykolasamochornov
  * License: GPL2+
- * Text Domain: smart-price-visibility
+ * Text Domain: smart-price-visibility-for-woocommerce
  * Requires Plugins: woocommerce
  */
 
