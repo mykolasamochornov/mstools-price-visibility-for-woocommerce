@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-	const forms = document.querySelectorAll('.spv-request-form');
+	const forms = document.querySelectorAll('.ppvfw-request-form');
 
 	if (!forms.length) return;
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			e.preventDefault();
 
 			const submitButton = form.querySelector('button[type="submit"]');
-			const emailInput = form.querySelector('input[name="spv_email"]');
+			const emailInput = form.querySelector('input[name="ppvfw_email"]');
 			const productId = form.getAttribute('data-product-id');
 
 			if (!emailInput.value) {
@@ -22,12 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			submitButton.textContent = 'Sending...';
 
 			const data = new FormData();
-			data.append('action', 'spv_create_request_order');
-			data.append('nonce', spv_ajax.nonce);
+			data.append('action', 'ppvfw_create_request_order');
+			data.append('nonce', ppvfw_ajax.nonce);
 			data.append('email', emailInput.value);
 			data.append('product_id', productId);
 
-			fetch(spv_ajax.ajax_url, {
+			fetch(ppvfw_ajax.ajax_url, {
 				method: 'POST',
 				body: data,
 			})

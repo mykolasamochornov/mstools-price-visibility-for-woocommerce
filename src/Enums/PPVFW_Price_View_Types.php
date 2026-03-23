@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartPriceVisibility\Enums;
+namespace PricePilotVisibility\Enums;
 
 if (!defined('ABSPATH')) {
 	die;
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
  *
  * Provides a method to get human-readable labels for UI display.
  */
-final class SPV_Price_View_Types
+final class PPVFW_Price_View_Types
 {
 	/**
 	 * Private constructor to prevent instantiation.
@@ -66,10 +66,10 @@ final class SPV_Price_View_Types
 	public static function labels(): array
 	{
 		return [
-			self::WITHOUT_CHANGES => __('Without changes', 'smart-price-visibility-for-woocommerce'),
-			self::HIDE_PRICE => __('Hide price', 'smart-price-visibility-for-woocommerce'),
-			self::HIDE_PRICE_AND_SHOW_TEXT => __('Hide price and show text', 'smart-price-visibility-for-woocommerce'),
-			self::HIDE_PRICE_AND_SHOW_FORM_REQUEST => __('Hide price and show request form', 'smart-price-visibility-for-woocommerce'),
+			self::WITHOUT_CHANGES => __('Without changes', 'price-pilot-visibility-for-woocommerce'),
+			self::HIDE_PRICE => __('Hide price', 'price-pilot-visibility-for-woocommerce'),
+			self::HIDE_PRICE_AND_SHOW_TEXT => __('Hide price and show text', 'price-pilot-visibility-for-woocommerce'),
+			self::HIDE_PRICE_AND_SHOW_FORM_REQUEST => __('Hide price and show request form', 'price-pilot-visibility-for-woocommerce'),
 		];
 	}
 }

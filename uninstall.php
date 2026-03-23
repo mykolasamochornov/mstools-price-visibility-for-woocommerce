@@ -1,6 +1,6 @@
 <?php
 /**
- * Uninstall script for Smart Price Visibility for WooCommerce
+ * Uninstall script for PricePilot Visibility for WooCommerce
  *
  * Deletes plugin options from the database.
  */
@@ -10,4 +10,4 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // Delete plugin options
-delete_option('spv_options');
+delete_option('ppvfw_options');

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace SmartPriceVisibility;
+namespace PricePilotVisibility;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
 /**
- * Handles all admin-related functionality for the Smart Price Visibility plugin.
+ * Handles all admin-related functionality for the PricePilot Visibility plugin.
  *
  * Responsible for registering admin menus, enqueueing scripts,
  * and rendering the plugin settings page.
  */
-class SPV_Admin
+class PPVFW_Admin
 {
 	/**
 	 * Initialize admin hooks.
@@ -41,7 +41,7 @@ class SPV_Admin
 			'Price Visibility',
 			'Price Visibility',
 			'manage_options',
-			'spv-settings',
+			'ppvfw-settings',
 			[$this, 'settingsPage']
 		);
 	}
@@ -55,7 +55,7 @@ class SPV_Admin
 	 */
 	public function settingsPage(): void
 	{
-		include SPV_PATH . 'views/admin/settings-page.php';
+		include PPVFW_PATH . 'views/admin/settings-page.php';
 	}
 
 	/**
@@ -68,16 +68,16 @@ class SPV_Admin
 	public function enqueueScripts(): void
 	{
 		wp_enqueue_script(
-			'spv-settings',
-			SPV_URL . 'views/assets/js/spv-settings.js',
+			'ppvfw-settings',
+			PPVFW_URL . 'views/assets/js/ppvfw-settings.js',
 			['jquery'],
 			'1.0',
 			true
 		);
 
-		wp_localize_script('spv-settings', 'spv_ajax', [
+		wp_localize_script('ppvfw-settings', 'ppvfw_ajax', [
 			'ajax_url' => admin_url('admin-ajax.php'),
-			'nonce' => wp_create_nonce('spv_nonce')
+			'nonce' => wp_create_nonce('ppvfw_nonce')
 		]);
 	}
 }

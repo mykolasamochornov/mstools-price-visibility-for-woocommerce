@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-	const btn = document.querySelector('#spv-save-btn');
-	const form = document.querySelector('#spv-settings-form');
+	const btn = document.querySelector('#ppvfw-save-btn');
+	const form = document.querySelector('#ppvfw-settings-form');
 
 	if (!btn || !form) return;
 
@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		e.preventDefault();
 
 		const data = new FormData();
-		data.append('action', 'spv_save_settings');
-		data.append('nonce', spv_ajax.nonce);
+		data.append('action', 'ppvfw_save_settings');
+		data.append('nonce', ppvfw_ajax.nonce);
 
 		const fields = form.querySelectorAll('[name]');
 		fields.forEach(field => {
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			data.append(`settings[${field.name}]`, value);
 		});
 
-		fetch(spv_ajax.ajax_url, {
+		fetch(ppvfw_ajax.ajax_url, {
 			method: 'POST',
 			body: data
 		})

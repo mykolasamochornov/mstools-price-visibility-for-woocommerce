@@ -2,50 +2,50 @@
 
 declare(strict_types=1);
 
-namespace SmartPriceVisibility;
+namespace PricePilotVisibility;
 
-use SmartPriceVisibility\SPV_Admin;
-use SmartPriceVisibility\SPV_Price_Handler;
-use SmartPriceVisibility\SPV_Request_Handler;
-use SmartPriceVisibility\SPV_Settings;
+use PricePilotVisibility\PPVFW_Admin;
+use PricePilotVisibility\PPVFW_Price_Handler;
+use PricePilotVisibility\PPVFW_Request_Handler;
+use PricePilotVisibility\PPVFW_Settings;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
 /**
- * Main plugin class for Smart Price Visibility.
+ * Main plugin class for PricePilot Visibility.
  * 
  * Handles initialization of admin settings, price handling, request handling,
  * and general plugin setup. Also checks if WooCommerce is active.
  */
-class SPV_Plugin
+class PPVFW_Plugin
 {
 	/**
 	 * Admin handler instance.
 	 *
-	 * @var SPV_Admin|null
+	 * @var PPVFW_Admin|null
 	 */
 	private $admin = null;
 
 	/**
 	 * Price handler instance.
 	 *
-	 * @var SPV_Price_Handler|null
+	 * @var PPVFW_Price_Handler|null
 	 */
 	private $priceHandler = null;
 
 	/**
 	 * Settings handler instance.
 	 *
-	 * @var SPV_Settings|null
+	 * @var PPVFW_Settings|null
 	 */
 	private $settings = null;
 
 	/**
 	 * Request handler instance.
 	 *
-	 * @var SPV_Request_Handler|null
+	 * @var PPVFW_Request_Handler|null
 	 */
 	private $requestHandler = null;
 
@@ -64,10 +64,10 @@ class SPV_Plugin
 			return;
 		}
 
-		$this->admin = new SPV_Admin();
-		$this->priceHandler = new SPV_Price_Handler();
-		$this->settings = new SPV_Settings();
-		$this->requestHandler = new SPV_Request_Handler();
+		$this->admin = new PPVFW_Admin();
+		$this->priceHandler = new PPVFW_Price_Handler();
+		$this->settings = new PPVFW_Settings();
+		$this->requestHandler = new PPVFW_Request_Handler();
 
 		add_action('init', [$this, 'initClasses']);
 	}
@@ -97,7 +97,7 @@ class SPV_Plugin
 		if (!current_user_can('activate_plugins')) return;
 
 		echo '<div class="notice notice-error"><p>';
-		echo esc_html__('Smart Price Visibility for WooCommerce requires WooCommerce to be installed and active.', 'smart-price-visibility-for-woocommerce');
+		echo esc_html__('PricePilot Visibility for WooCommerce requires WooCommerce to be installed and active.', 'price-pilot-visibility-for-woocommerce');
 		echo '</p></div>';
 	}
 }
