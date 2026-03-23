@@ -85,28 +85,3 @@ if (!defined('ABSPATH')) {
         </p>
     </form>
 </div>
-
-<script type="text/javascript">
-(function($){
-    function toggleCustomRows() {
-        var mode = $('#mstpvfw_mode').val();
-
-        if (mode === '<?php echo esc_js(MSTPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_TEXT); ?>') {
-            $('#mstpvfw_custom_text_row').show();
-        } else {
-            $('#mstpvfw_custom_text_row').hide();
-        }
-
-        if (mode === '<?php echo esc_js(MSTPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_FORM_REQUEST); ?>') {
-            $('#mstpvfw_custom_form_text_row').show();
-        } else {
-            $('#mstpvfw_custom_form_text_row').hide();
-        }
-    }
-
-    $(document).ready(function(){
-        toggleCustomRows();
-        $('#mstpvfw_mode').on('change', toggleCustomRows);
-    });
-})(jQuery);
-</script>
