@@ -1,6 +1,6 @@
 <?php
 /**
- * Uninstall script for PricePilot Visibility for WooCommerce
+ * Uninstall script for MSTools Price Visibility for WooCommerce
  *
  * Deletes plugin options from the database.
  */
@@ -10,4 +10,4 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // Delete plugin options
-delete_option('ppvfw_options');
+delete_option('mstpvfw_options');

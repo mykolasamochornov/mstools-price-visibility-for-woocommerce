@@ -1,4 +1,4 @@
-=== PricePilot Visibility for WooCommerce ===
+=== MSTools Price Visibility for WooCommerce ===
 Contributors: msamochornov
 Tags: woocommerce, price, visibility, hide, request
 Requires at least: 5.9
@@ -6,20 +6,20 @@ Tested up to: 6.9
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: price-pilot-visibility-for-woocommerce
+Text Domain: mstools-price-visibility-for-woocommerce
 Requires Plugins: woocommerce
 
 Hide WooCommerce prices or replace them with text or a request form.
 
 == Description ==
 
-Plugin URI: https://github.com/mykolasamochornov/price-pilot-visibility-for-woocommerce
+Plugin URI: https://github.com/mykolasamochornov/mstools-price-visibility-for-woocommerce
 Author: Mykola Samochornov
 Author URI: https://github.com/mykolasamochornov
 Version: 1.0.0
 License: GPL2+
 
-PricePilot Visibility allows you to control price visibility in WooCommerce:
+MSTools Price Visibility allows you to control price visibility in WooCommerce:
 
 - Hide product prices for guests or all users
 - Replace prices with custom text
@@ -42,7 +42,7 @@ PricePilot Visibility allows you to control price visibility in WooCommerce:
 
 1. Copy the plugin folder to wp-content/plugins/
 2. Activate the plugin via the Plugins menu in WordPress
-3. Go to WooCommerce → PricePilot Visibility to configure settings
+3. Go to WooCommerce → MSTools Price Visibility to configure settings
 
 == Settings ==
 
@@ -65,8 +65,8 @@ This plugin uses a simple Git workflow with main and dev branches.
 
 1. Clone the repository
 
-git clone https://github.com/mykolasamochornov/price-pilot-visibility-for-woocommerce.git
+git clone https://github.com/mykolasamochornov/mstools-price-visibility-for-woocommerce.git
 
 2. Go to the plugin folder
 
-cd price-pilot-visibility-for-woocommerce
+cd mstools-price-visibility-for-woocommerce

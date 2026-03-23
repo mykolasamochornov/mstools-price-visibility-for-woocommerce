@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace PricePilotVisibility;
+namespace MSToolsPriceVisibility;
 
-use PricePilotVisibility\Enums\PPVFW_Price_View_Types;
-use PricePilotVisibility\Enums\PPVFW_Apply_For;
+use MSToolsPriceVisibility\Enums\MSTPVFW_Price_View_Types;
+use MSToolsPriceVisibility\Enums\MSTPVFW_Apply_For;
 
 if (!defined('ABSPATH')) {
 	die;
 }
 
 /**
- * Handles plugin settings for PricePilot Visibility.
+ * Handles plugin settings for MSTools Price Visibility.
  *
  * Responsible for registering, sanitizing, retrieving, and saving
  * plugin options. Also handles AJAX requests for saving settings.
  */
-final class PPVFW_Settings
+final class MSTPVFW_Settings
 {
 	/**
 	 * Option key used to store plugin settings in the database.
 	 */
-	public const OPTION_KEY = 'ppvfw_options';
+	public const OPTION_KEY = 'mstpvfw_options';
 
 	/**
 	 * Initialize settings hooks.
@@ -36,7 +36,7 @@ final class PPVFW_Settings
 		add_action('admin_init', [self::class, 'registerSettings']);
 
 		// AJAX for saving settings
-		add_action('wp_ajax_ppvfw_save_settings', [self::class, 'ajaxSaveSettings']);
+		add_action('wp_ajax_mstpvfw_save_settings', [self::class, 'ajaxSaveSettings']);
 	}
 
 	/**
@@ -49,13 +49,13 @@ final class PPVFW_Settings
 	public static function registerSettings(): void
 	{
 		register_setting(
-			'ppvfw_settings_group',
+			'mstpvfw_settings_group',
 			self::OPTION_KEY,
 			[
 				'type' => 'array',
 				'default' => [
-					'mode' => PPVFW_Price_View_Types::WITHOUT_CHANGES,
-					'apply_for' => PPVFW_Apply_For::EVERYONE,
+					'mode' => MSTPVFW_Price_View_Types::WITHOUT_CHANGES,
+					'apply_for' => MSTPVFW_Apply_For::EVERYONE,
 					'hide_add_to_cart' => 0,
 					'custom_text' => '',
 					'custom_form_text' => '',
@@ -76,8 +76,8 @@ final class PPVFW_Settings
 	public static function sanitize(array $input): array
 	{
 		$defaults = [
-			'mode' => PPVFW_Price_View_Types::WITHOUT_CHANGES,
-			'apply_for' => PPVFW_Apply_For::EVERYONE,
+			'mode' => MSTPVFW_Price_View_Types::WITHOUT_CHANGES,
+			'apply_for' => MSTPVFW_Apply_For::EVERYONE,
 			'hide_add_to_cart' => 0,
 			'custom_text' => '',
 			'custom_form_text' => '',
@@ -86,13 +86,13 @@ final class PPVFW_Settings
 		$output = array_merge($defaults, $input);
 
 		// Validate mode
-		if (!in_array($output['mode'], PPVFW_Price_View_Types::ALL, true)) {
-			$output['mode'] = PPVFW_Price_View_Types::WITHOUT_CHANGES;
+		if (!in_array($output['mode'], MSTPVFW_Price_View_Types::ALL, true)) {
+			$output['mode'] = MSTPVFW_Price_View_Types::WITHOUT_CHANGES;
 		}
 
 		// Validate apply_for
-		if (!in_array($output['apply_for'], PPVFW_Apply_For::ALL, true)) {
-			$output['apply_for'] = PPVFW_Apply_For::EVERYONE;
+		if (!in_array($output['apply_for'], MSTPVFW_Apply_For::ALL, true)) {
+			$output['apply_for'] = MSTPVFW_Apply_For::EVERYONE;
 		}
 
 		// Normalize checkbox
@@ -111,8 +111,8 @@ final class PPVFW_Settings
 	public static function getOptions(): array
 	{
 		return get_option(self::OPTION_KEY, [
-			'mode' => PPVFW_Price_View_Types::WITHOUT_CHANGES,
-			'apply_for' => PPVFW_Apply_For::EVERYONE,
+			'mode' => MSTPVFW_Price_View_Types::WITHOUT_CHANGES,
+			'apply_for' => MSTPVFW_Apply_For::EVERYONE,
 			'hide_add_to_cart' => 0,
 			'custom_text' => '',
 			'custom_form_text' => '',
@@ -128,7 +128,7 @@ final class PPVFW_Settings
 	 */
 	public static function ajaxSaveSettings(): void
 	{
-		check_ajax_referer('ppvfw_nonce', 'nonce');
+		check_ajax_referer('mstpvfw_nonce', 'nonce');
 
 		// Get raw input, unslash, and ensure it's an array
 		$raw_input = filter_input(INPUT_POST, 'settings', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) ?: [];
