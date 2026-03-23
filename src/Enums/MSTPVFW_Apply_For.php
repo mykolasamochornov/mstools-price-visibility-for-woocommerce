@@ -1,6 +1,6 @@
 <?php
 
-namespace PricePilotVisibility\Enums;
+namespace MSToolsPriceVisibility\Enums;
 
 if (!defined('ABSPATH')) {
 	die;
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
  *
  * Provides a method to get human-readable labels for UI display.
  */
-final class PPVFW_Apply_For
+final class MSTPVFW_Apply_For
 {
 	/**
 	 * Private constructor to prevent instantiation.
@@ -52,8 +52,8 @@ final class PPVFW_Apply_For
 	public static function labels(): array
 	{
 		return [
-			self::EVERYONE => __('Apply for everyone', 'price-pilot-visibility-for-woocommerce'),
-			self::GUESTS_ONLY => __('Apply only for guests', 'price-pilot-visibility-for-woocommerce'),
+			self::EVERYONE => __('Apply for everyone', 'mstools-price-visibility-for-woocommerce'),
+			self::GUESTS_ONLY => __('Apply only for guests', 'mstools-price-visibility-for-woocommerce'),
 		];
 	}
 }

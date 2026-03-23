@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace PricePilotVisibility;
+namespace MSToolsPriceVisibility;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
 /**
- * Handles all admin-related functionality for the PricePilot Visibility plugin.
+ * Handles all admin-related functionality for the MSTools Price Visibility plugin.
  *
  * Responsible for registering admin menus, enqueueing scripts,
  * and rendering the plugin settings page.
  */
-class PPVFW_Admin
+class MSTPVFW_Admin
 {
 	/**
 	 * Initialize admin hooks.
@@ -41,7 +41,7 @@ class PPVFW_Admin
 			'Price Visibility',
 			'Price Visibility',
 			'manage_options',
-			'ppvfw-settings',
+			'mstpvfw-settings',
 			[$this, 'settingsPage']
 		);
 	}
@@ -55,7 +55,7 @@ class PPVFW_Admin
 	 */
 	public function settingsPage(): void
 	{
-		include PPVFW_PATH . 'views/admin/settings-page.php';
+		include MSTPVFW_PATH . 'views/admin/settings-page.php';
 	}
 
 	/**
@@ -68,16 +68,16 @@ class PPVFW_Admin
 	public function enqueueScripts(): void
 	{
 		wp_enqueue_script(
-			'ppvfw-settings',
-			PPVFW_URL . 'views/assets/js/ppvfw-settings.js',
+			'mstpvfw-settings',
+			MSTPVFW_URL . 'views/assets/js/mstpvfw-settings.js',
 			['jquery'],
 			'1.0',
 			true
 		);
 
-		wp_localize_script('ppvfw-settings', 'ppvfw_ajax', [
+		wp_localize_script('mstpvfw-settings', 'mstpvfw_ajax', [
 			'ajax_url' => admin_url('admin-ajax.php'),
-			'nonce' => wp_create_nonce('ppvfw_nonce')
+			'nonce' => wp_create_nonce('mstpvfw_nonce')
 		]);
 	}
 }

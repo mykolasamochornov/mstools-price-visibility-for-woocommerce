@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace PricePilotVisibility;
+namespace MSToolsPriceVisibility;
 
-use PricePilotVisibility\PPVFW_Settings;
-use PricePilotVisibility\Enums\PPVFW_Price_View_Types;
-use PricePilotVisibility\Enums\PPVFW_Apply_For;
+use MSToolsPriceVisibility\MSTPVFW_Settings;
+use MSToolsPriceVisibility\Enums\MSTPVFW_Price_View_Types;
+use MSToolsPriceVisibility\Enums\MSTPVFW_Apply_For;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
 /**
- * Handles product price visibility logic for the PricePilot Visibility plugin.
+ * Handles product price visibility logic for the MSTools Price Visibility plugin.
  *
  * Responsible for filtering product prices, hiding add-to-cart buttons,
  * and rendering a request price form based on plugin settings and user type.
  */
-class PPVFW_Price_Handler
+class MSTPVFW_Price_Handler
 {
     /**
-     * Plugin options retrieved from PPVFW_Settings.
+     * Plugin options retrieved from MSTPVFW_Settings.
      *
      * @var array
      */
@@ -37,7 +37,7 @@ class PPVFW_Price_Handler
      */
     public function init(): void
     {
-        $this->options = PPVFW_Settings::getOptions();
+        $this->options = MSTPVFW_Settings::getOptions();
 
         // Filter product price HTML
         add_filter('woocommerce_get_price_html', [$this, 'filterPrice'], 9999, 2);
@@ -61,19 +61,19 @@ class PPVFW_Price_Handler
      */
     public function filterPrice(string $price, $product): string
     {
-        $mode = $this->options['mode'] ?? PPVFW_Price_View_Types::WITHOUT_CHANGES;
-        $apply_for = $this->options['apply_for'] ?? PPVFW_Apply_For::EVERYONE;
+        $mode = $this->options['mode'] ?? MSTPVFW_Price_View_Types::WITHOUT_CHANGES;
+        $apply_for = $this->options['apply_for'] ?? MSTPVFW_Apply_For::EVERYONE;
 
-        if ($mode === PPVFW_Price_View_Types::WITHOUT_CHANGES) {
+        if ($mode === MSTPVFW_Price_View_Types::WITHOUT_CHANGES) {
             return $price;
         }
 
         $apply = false;
         switch ($apply_for) {
-            case PPVFW_Apply_For::EVERYONE:
+            case MSTPVFW_Apply_For::EVERYONE:
                 $apply = true;
                 break;
-            case PPVFW_Apply_For::GUESTS_ONLY:
+            case MSTPVFW_Apply_For::GUESTS_ONLY:
                 $apply = !is_user_logged_in();
                 break;
         }
@@ -83,12 +83,12 @@ class PPVFW_Price_Handler
         }
 
         switch ($mode) {
-            case PPVFW_Price_View_Types::HIDE_PRICE:
+            case MSTPVFW_Price_View_Types::HIDE_PRICE:
                 return '';
-            case PPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_TEXT:
+            case MSTPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_TEXT:
                 $text = $this->options['custom_text'] ?? '';
-                return '<span class="ppvfw-hidden-price">' . esc_html($text) . '</span>';
-            case PPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_FORM_REQUEST:
+                return '<span class="mstpvfw-hidden-price">' . esc_html($text) . '</span>';
+            case MSTPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_FORM_REQUEST:
                 return ''; // Form rendered via hook
             default:
                 return $price;
@@ -104,16 +104,16 @@ class PPVFW_Price_Handler
      */
     private function applyHideAddToCartFilters(): void
     {
-        $apply_for = $this->options['apply_for'] ?? PPVFW_Apply_For::EVERYONE;
+        $apply_for = $this->options['apply_for'] ?? MSTPVFW_Apply_For::EVERYONE;
 
         // Single product
         add_filter('woocommerce_is_purchasable', function($purchasable, $product) use ($apply_for) {
             $apply = false;
             switch ($apply_for) {
-                case PPVFW_Apply_For::EVERYONE:
+                case MSTPVFW_Apply_For::EVERYONE:
                     $apply = true;
                     break;
-                case PPVFW_Apply_For::GUESTS_ONLY:
+                case MSTPVFW_Apply_For::GUESTS_ONLY:
                     $apply = !is_user_logged_in();
                     break;
             }
@@ -124,10 +124,10 @@ class PPVFW_Price_Handler
         add_filter('woocommerce_loop_add_to_cart_link', function($button) use ($apply_for) {
             $apply = false;
             switch ($apply_for) {
-                case PPVFW_Apply_For::EVERYONE:
+                case MSTPVFW_Apply_For::EVERYONE:
                     $apply = true;
                     break;
-                case PPVFW_Apply_For::GUESTS_ONLY:
+                case MSTPVFW_Apply_For::GUESTS_ONLY:
                     $apply = !is_user_logged_in();
                     break;
             }
@@ -138,10 +138,10 @@ class PPVFW_Price_Handler
         add_action('woocommerce_variable_add_to_cart', function() use ($apply_for) {
             $apply = false;
             switch ($apply_for) {
-                case PPVFW_Apply_For::EVERYONE:
+                case MSTPVFW_Apply_For::EVERYONE:
                     $apply = true;
                     break;
-                case PPVFW_Apply_For::GUESTS_ONLY:
+                case MSTPVFW_Apply_For::GUESTS_ONLY:
                     $apply = !is_user_logged_in();
                     break;
             }
@@ -162,19 +162,19 @@ class PPVFW_Price_Handler
      */
     public function renderRequestFormHook(): void
     {
-        $mode = $this->options['mode'] ?? PPVFW_Price_View_Types::WITHOUT_CHANGES;
-        $apply_for = $this->options['apply_for'] ?? PPVFW_Apply_For::EVERYONE;
+        $mode = $this->options['mode'] ?? MSTPVFW_Price_View_Types::WITHOUT_CHANGES;
+        $apply_for = $this->options['apply_for'] ?? MSTPVFW_Apply_For::EVERYONE;
 
-        if ($mode !== PPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_FORM_REQUEST) {
+        if ($mode !== MSTPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_FORM_REQUEST) {
             return;
         }
 
         $apply = false;
         switch ($apply_for) {
-            case PPVFW_Apply_For::EVERYONE:
+            case MSTPVFW_Apply_For::EVERYONE:
                 $apply = true;
                 break;
-            case PPVFW_Apply_For::GUESTS_ONLY:
+            case MSTPVFW_Apply_For::GUESTS_ONLY:
                 $apply = !is_user_logged_in();
                 break;
         }
@@ -207,16 +207,16 @@ class PPVFW_Price_Handler
 
         ob_start();
         ?>
-        <div class="ppvfw-request-wrapper woocommerce">
+        <div class="mstpvfw-request-wrapper woocommerce">
             <?php if (!empty($form_text)) : ?>
-                <p class="ppvfw-form-text"><?php echo esc_html($form_text); ?></p>
+                <p class="mstpvfw-form-text"><?php echo esc_html($form_text); ?></p>
             <?php endif; ?>
-            <form class="ppvfw-request-form" data-product-id="<?php echo esc_attr($product_id); ?>">
+            <form class="mstpvfw-request-form" data-product-id="<?php echo esc_attr($product_id); ?>">
                 <p class="form-row form-row-wide">
-                    <input type="email" name="ppvfw_email" class="ppvfw-email input-text" placeholder="<?php echo esc_attr__('Your email', 'price-pilot-visibility-for-woocommerce'); ?>" required>
+                    <input type="email" name="mstpvfw_email" class="mstpvfw-email input-text" placeholder="<?php echo esc_attr__('Your email', 'mstools-price-visibility-for-woocommerce'); ?>" required>
                 </p>
                 <p class="form-row">
-                    <button type="submit" class="ppvfw-button button wp-element-button wc-block-components-product-button__button"><?php echo esc_html__('Request Price', 'price-pilot-visibility-for-woocommerce'); ?></button>
+                    <button type="submit" class="mstpvfw-button button wp-element-button wc-block-components-product-button__button"><?php echo esc_html__('Request Price', 'mstools-price-visibility-for-woocommerce'); ?></button>
                 </p>
             </form>
         </div>

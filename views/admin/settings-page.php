@@ -1,8 +1,8 @@
 <?php
 
-use PricePilotVisibility\Enums\PPVFW_Price_View_Types;
-use PricePilotVisibility\Enums\PPVFW_Apply_For;
-use PricePilotVisibility\PPVFW_Settings;
+use MSToolsPriceVisibility\Enums\MSTPVFW_Price_View_Types;
+use MSToolsPriceVisibility\Enums\MSTPVFW_Apply_For;
+use MSToolsPriceVisibility\MSTPVFW_Settings;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -10,19 +10,19 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div class="wrap">
-    <h1><?php echo esc_html__('PricePilot Visibility', 'price-pilot-visibility-for-woocommerce'); ?></h1>
+    <h1><?php echo esc_html__('MSTools Price Visibility', 'mstools-price-visibility-for-woocommerce'); ?></h1>
 
-    <form id="ppvfw-settings-form">
+    <form id="mstpvfw-settings-form">
         <table class="form-table">
             <tr>
                 <th scope="row">
-                    <label for="ppvfw_apply_for"><?php echo esc_html__('Apply for', 'price-pilot-visibility-for-woocommerce'); ?></label>
+                    <label for="mstpvfw_apply_for"><?php echo esc_html__('Apply for', 'mstools-price-visibility-for-woocommerce'); ?></label>
                 </th>
                 <td>
-                    <select id="ppvfw_apply_for" name="apply_for">
+                    <select id="mstpvfw_apply_for" name="apply_for">
                         <?php // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals ?>
-                        <?php foreach (PPVFW_Apply_For::labels() as $value => $label) : ?>
-                            <option value="<?php echo esc_attr($value); ?>" <?php selected(PPVFW_Settings::getOptions()['apply_for'], $value); ?>>
+                        <?php foreach (MSTPVFW_Apply_For::labels() as $value => $label) : ?>
+                            <option value="<?php echo esc_attr($value); ?>" <?php selected(MSTPVFW_Settings::getOptions()['apply_for'], $value); ?>>
                                 <?php echo esc_html($label); ?>
                             </option>
                         <?php endforeach; ?>
@@ -32,13 +32,13 @@ if (!defined('ABSPATH')) {
 
             <tr>
                 <th scope="row">
-                    <label for="ppvfw_mode"><?php echo esc_html__('Mode', 'price-pilot-visibility-for-woocommerce'); ?></label>
+                    <label for="mstpvfw_mode"><?php echo esc_html__('Mode', 'mstools-price-visibility-for-woocommerce'); ?></label>
                 </th>
                 <td>
-                    <select id="ppvfw_mode" name="mode">
+                    <select id="mstpvfw_mode" name="mode">
                         <?php // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals ?>
-                        <?php foreach (PPVFW_Price_View_Types::labels() as $value => $label) : ?>
-                            <option value="<?php echo esc_attr($value); ?>" <?php selected(PPVFW_Settings::getOptions()['mode'], $value); ?>>
+                        <?php foreach (MSTPVFW_Price_View_Types::labels() as $value => $label) : ?>
+                            <option value="<?php echo esc_attr($value); ?>" <?php selected(MSTPVFW_Settings::getOptions()['mode'], $value); ?>>
                                 <?php echo esc_html($label); ?>
                             </option>
                         <?php endforeach; ?>
@@ -46,41 +46,41 @@ if (!defined('ABSPATH')) {
                 </td>
             </tr>
 
-            <tr id="ppvfw_custom_text_row" style="display:none;">
+            <tr id="mstpvfw_custom_text_row" style="display:none;">
                 <th scope="row">
-                    <label for="ppvfw_custom_text"><?php echo esc_html__('Custom Text', 'price-pilot-visibility-for-woocommerce'); ?></label>
+                    <label for="mstpvfw_custom_text"><?php echo esc_html__('Custom Text', 'mstools-price-visibility-for-woocommerce'); ?></label>
                 </th>
                 <td>
-                    <input type="text" id="ppvfw_custom_text" name="custom_text" value="<?php echo esc_attr(PPVFW_Settings::getOptions()['custom_text'] ?? ''); ?>" class="regular-text">
-                    <span class="description"><?php echo esc_html__('Text displayed instead of price when the mode is set to show text.', 'price-pilot-visibility-for-woocommerce'); ?></span>
+                    <input type="text" id="mstpvfw_custom_text" name="custom_text" value="<?php echo esc_attr(MSTPVFW_Settings::getOptions()['custom_text'] ?? ''); ?>" class="regular-text">
+                    <span class="description"><?php echo esc_html__('Text displayed instead of price when the mode is set to show text.', 'mstools-price-visibility-for-woocommerce'); ?></span>
                 </td>
             </tr>
 
-            <tr id="ppvfw_custom_form_text_row" style="display:none;">
+            <tr id="mstpvfw_custom_form_text_row" style="display:none;">
                 <th scope="row">
-                    <label for="ppvfw_custom_form_text"><?php echo esc_html__('Custom Form Text', 'price-pilot-visibility-for-woocommerce'); ?></label>
+                    <label for="mstpvfw_custom_form_text"><?php echo esc_html__('Custom Form Text', 'mstools-price-visibility-for-woocommerce'); ?></label>
                 </th>
                 <td>
-                    <input type="text" id="ppvfw_custom_form_text" name="custom_form_text" value="<?php echo esc_attr(PPVFW_Settings::getOptions()['custom_form_text'] ?? ''); ?>" class="regular-text">
-                    <span class="description"><?php echo esc_html__('Text displayed above the form when the mode is set to show request form.', 'price-pilot-visibility-for-woocommerce'); ?></span>
+                    <input type="text" id="mstpvfw_custom_form_text" name="custom_form_text" value="<?php echo esc_attr(MSTPVFW_Settings::getOptions()['custom_form_text'] ?? ''); ?>" class="regular-text">
+                    <span class="description"><?php echo esc_html__('Text displayed above the form when the mode is set to show request form.', 'mstools-price-visibility-for-woocommerce'); ?></span>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="ppvfw_hide_add_to_cart"><?php echo esc_html__('Hide Add to Cart button', 'price-pilot-visibility-for-woocommerce'); ?></label>
+                    <label for="mstpvfw_hide_add_to_cart"><?php echo esc_html__('Hide Add to Cart button', 'mstools-price-visibility-for-woocommerce'); ?></label>
                 </th>
                 <td>
-                    <input type="checkbox" id="ppvfw_hide_add_to_cart" name="hide_add_to_cart" value="1" <?php checked(PPVFW_Settings::getOptions()['hide_add_to_cart'], 1); ?>>
-                    <span class="description"><?php echo esc_html__('Hide the Add to Cart button on the shop and product pages.', 'price-pilot-visibility-for-woocommerce'); ?></span>
+                    <input type="checkbox" id="mstpvfw_hide_add_to_cart" name="hide_add_to_cart" value="1" <?php checked(MSTPVFW_Settings::getOptions()['hide_add_to_cart'], 1); ?>>
+                    <span class="description"><?php echo esc_html__('Hide the Add to Cart button on the shop and product pages.', 'mstools-price-visibility-for-woocommerce'); ?></span>
                 </td>
             </tr>
 
         </table>
 
         <p>
-            <button type="button" class="button button-primary" id="ppvfw-save-btn">
-                <?php echo esc_html__('Save Settings', 'price-pilot-visibility-for-woocommerce'); ?>
+            <button type="button" class="button button-primary" id="mstpvfw-save-btn">
+                <?php echo esc_html__('Save Settings', 'mstools-price-visibility-for-woocommerce'); ?>
             </button>
         </p>
     </form>
@@ -89,24 +89,24 @@ if (!defined('ABSPATH')) {
 <script type="text/javascript">
 (function($){
     function toggleCustomRows() {
-        var mode = $('#ppvfw_mode').val();
+        var mode = $('#mstpvfw_mode').val();
 
-        if (mode === '<?php echo esc_js(PPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_TEXT); ?>') {
-            $('#ppvfw_custom_text_row').show();
+        if (mode === '<?php echo esc_js(MSTPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_TEXT); ?>') {
+            $('#mstpvfw_custom_text_row').show();
         } else {
-            $('#ppvfw_custom_text_row').hide();
+            $('#mstpvfw_custom_text_row').hide();
         }
 
-        if (mode === '<?php echo esc_js(PPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_FORM_REQUEST); ?>') {
-            $('#ppvfw_custom_form_text_row').show();
+        if (mode === '<?php echo esc_js(MSTPVFW_Price_View_Types::HIDE_PRICE_AND_SHOW_FORM_REQUEST); ?>') {
+            $('#mstpvfw_custom_form_text_row').show();
         } else {
-            $('#ppvfw_custom_form_text_row').hide();
+            $('#mstpvfw_custom_form_text_row').hide();
         }
     }
 
     $(document).ready(function(){
         toggleCustomRows();
-        $('#ppvfw_mode').on('change', toggleCustomRows);
+        $('#mstpvfw_mode').on('change', toggleCustomRows);
     });
 })(jQuery);
 </script>

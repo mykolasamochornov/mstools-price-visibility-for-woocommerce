@@ -2,50 +2,50 @@
 
 declare(strict_types=1);
 
-namespace PricePilotVisibility;
+namespace MSToolsPriceVisibility;
 
-use PricePilotVisibility\PPVFW_Admin;
-use PricePilotVisibility\PPVFW_Price_Handler;
-use PricePilotVisibility\PPVFW_Request_Handler;
-use PricePilotVisibility\PPVFW_Settings;
+use MSToolsPriceVisibility\MSTPVFW_Admin;
+use MSToolsPriceVisibility\MSTPVFW_Price_Handler;
+use MSToolsPriceVisibility\MSTPVFW_Request_Handler;
+use MSToolsPriceVisibility\MSTPVFW_Settings;
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
 /**
- * Main plugin class for PricePilot Visibility.
+ * Main plugin class for MSTools Price Visibility.
  * 
  * Handles initialization of admin settings, price handling, request handling,
  * and general plugin setup. Also checks if WooCommerce is active.
  */
-class PPVFW_Plugin
+class MSTPVFW_Plugin
 {
 	/**
 	 * Admin handler instance.
 	 *
-	 * @var PPVFW_Admin|null
+	 * @var MSTPVFW_Admin|null
 	 */
 	private $admin = null;
 
 	/**
 	 * Price handler instance.
 	 *
-	 * @var PPVFW_Price_Handler|null
+	 * @var MSTPVFW_Price_Handler|null
 	 */
 	private $priceHandler = null;
 
 	/**
 	 * Settings handler instance.
 	 *
-	 * @var PPVFW_Settings|null
+	 * @var MSTPVFW_Settings|null
 	 */
 	private $settings = null;
 
 	/**
 	 * Request handler instance.
 	 *
-	 * @var PPVFW_Request_Handler|null
+	 * @var MSTPVFW_Request_Handler|null
 	 */
 	private $requestHandler = null;
 
@@ -64,10 +64,10 @@ class PPVFW_Plugin
 			return;
 		}
 
-		$this->admin = new PPVFW_Admin();
-		$this->priceHandler = new PPVFW_Price_Handler();
-		$this->settings = new PPVFW_Settings();
-		$this->requestHandler = new PPVFW_Request_Handler();
+		$this->admin = new MSTPVFW_Admin();
+		$this->priceHandler = new MSTPVFW_Price_Handler();
+		$this->settings = new MSTPVFW_Settings();
+		$this->requestHandler = new MSTPVFW_Request_Handler();
 
 		add_action('init', [$this, 'initClasses']);
 	}
@@ -97,7 +97,7 @@ class PPVFW_Plugin
 		if (!current_user_can('activate_plugins')) return;
 
 		echo '<div class="notice notice-error"><p>';
-		echo esc_html__('PricePilot Visibility for WooCommerce requires WooCommerce to be installed and active.', 'price-pilot-visibility-for-woocommerce');
+		echo esc_html__('MSTools Price Visibility for WooCommerce requires WooCommerce to be installed and active.', 'mstools-price-visibility-for-woocommerce');
 		echo '</p></div>';
 	}
 }
